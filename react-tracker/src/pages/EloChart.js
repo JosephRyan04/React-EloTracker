@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import {range} from "lodash";
-import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/esm/Row';
 
 
@@ -35,7 +34,7 @@ export default function EloChart() {
   
   return (
     <Body sidebar>
-      <Row>
+      <Row id="RankChart">
         <Line
           data={{
             labels: arr,
