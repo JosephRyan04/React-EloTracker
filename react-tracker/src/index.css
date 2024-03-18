@@ -12,20 +12,19 @@
 }
 
 .Sidebar {
-  width: 120px;
-  margin: 5px;
-  position: sticky;
-  top: 62px;
+  width: 208px;
+  height: 100%;
+  margin: auto;
+  position: fixed;
+  top: 66px;
   align-self: flex-start;
   align-items: start;
   border-right: 1px solid #ddd;
-  
-  
 }
 
 .Sidebar .nav-item {
   width: 100%;
-  
+
 }
 
 .Sidebar a {
@@ -35,6 +34,8 @@
 .Sidebar a:hover {
   background-color: #eee;
 }
+
+
 
 .Sidebar a:visited {
   color: #ddd;
@@ -58,6 +59,7 @@ div.container-fluid:nth-child(3) > canvas:nth-child(1){
 
 div.MainBody {
   min-height: 500px;
+  
 }
 .Body {
   min-height: 500px;
@@ -65,9 +67,27 @@ div.MainBody {
 }
 
 .Content {
-  height: 90vh;
+  height: 100vh;
+  padding-left:220px;
 }
-
-div.row:nth-child(1) {
+#RankChart {
   height: 60%;
 }
+
+.row {
+  justify-content: center;
+}
+
+@media screen and (max-width: 500px){
+  .Sidebar{
+  display: none!important;
+  }
+  .Content{
+    padding-left: 0 !important;
+  }
+  #RankChart {
+    height: 200px;
+  }
+  
+
+  }

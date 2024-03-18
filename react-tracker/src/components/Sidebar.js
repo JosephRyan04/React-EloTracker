@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 
 export default function Sidebar() {
   return (
-    <Navbar expand="lg" sticky="top" className="flex-column Sidebar">
+    <Navbar sticky="top" className="flex-column Sidebar container hidden-sm">
       <Nav.Item>
         <Nav.Link href="/">Home</Nav.Link>
       </Nav.Item>
