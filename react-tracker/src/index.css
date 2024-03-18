@@ -2,6 +2,7 @@
   padding: 0;
   background-color: #23252c;
   color: #ddd;
+  height: 100vh;
 }
 
 .Header {
@@ -17,6 +18,8 @@
   top: 62px;
   align-self: flex-start;
   align-items: start;
+  border-right: 1px solid #ddd;
+  
   
 }
 
@@ -44,4 +47,27 @@
 
 .navbar-brand:focus, .navbar-brand:hover {
   color:#ddd;
+}
+
+div.container-fluid:nth-child(3) > canvas:nth-child(1){
+  display: flex !important;
+  /* max-width: 1000px;
+  max-height: 500px; */
+}
+
+
+div.MainBody {
+  min-height: 500px;
+}
+.Body {
+  min-height: 500px;
+  
+}
+
+.Content {
+  height: 90vh;
+}
+
+div.row:nth-child(1) {
+  height: 60%;
 }

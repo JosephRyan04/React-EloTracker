@@ -1,44 +1,25 @@
 import Body from '../components/Body';
-import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Posts from '../components/Posts';
+import Sidebar from '../components/Sidebar';
 
 
 
-const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
-export default function RankPage() {
-    const {user} = useParams();
-    const [data, setData] = useState();
-
-
-
-
-    useEffect(() => {
-        (async () => {
-          const response = await fetch('/api/user-ranks?player=' + user);
-          if (response.ok) {
-            const results = await response.json();
-            console.log(results)
-            console.log(user + " Named")
-            setData(results);
-          }
-          else {
-            console.log(BASE_API_URL +"REAL ERROR!!")
-            setData(null);
-          }
-        })();
-      }, [user]);
-    
-
+export default function RankPage({ sidebar, children }) {
   return (
-    <Body sidebar>
 
-    <h1>Explore</h1>
-    <p>Ranked page</p>
-    <>
-      {data}
-    </>
-    
-  </Body>
-    
+    <Container fluid>
+      <Sidebar></Sidebar>
+      <Row>
+        <Col sm={12} lg={2} className="d-none d-lg-block">  </Col>        
+        <Col>2 of 2</Col>
+      </Row>
+      <Row> 
+      <Col sm={12} lg={2} className="d-none d-lg-block"></Col>        
+      <Col>Chart</Col>  
+      </Row>
+    </Container>
   );
 }

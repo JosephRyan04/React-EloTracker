@@ -4,10 +4,11 @@ import Sidebar from './Sidebar';
 
 export default function Body({ sidebar, children }) {
   return (
-    <Container className='m-0'>
+    // className='m-0'
+    <Container fluid className='MainBody'> 
       <Stack direction="horizontal" className="Body">
         {sidebar && <Sidebar />}
-        <Container className="Content">
+        <Container fluid className="Content">
           {children}
         </Container>
       </Stack>

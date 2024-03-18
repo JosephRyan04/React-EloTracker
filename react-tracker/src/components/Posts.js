@@ -2,18 +2,18 @@ export default function Posts() {
   const posts = [
     {
       id: 1,
-      text: 'Hello, world!',
+      text: 'Rank: 3200',
       timestamp: 'a minute ago',
       author: {
-        username: 'susan',
+        username: 'Zion',
       },
     },
     {
       id: 2,
-      text: 'Second post',
+      text: 'Rank: 2326',
       timestamp: 'an hour ago',
       author: {
-        username: 'john',
+        username: 'Wens',
       },
     },
   ];

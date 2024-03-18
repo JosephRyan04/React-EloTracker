@@ -13,6 +13,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<FeedPage />} />
+          <Route path="/grid" element={<RankPage />} />
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/user/:user" element={<EloChart />} />
           <Route path="*" element={<Navigate to="/" />} />

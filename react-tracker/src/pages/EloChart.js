@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import {range} from "lodash";
+import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/esm/Row';
 
 
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
@@ -33,10 +35,7 @@ export default function EloChart() {
   
   return (
     <Body sidebar>
-      <h1>PLEASE</h1>
-      <p>TODO</p>
-      <>
-      <div className="dataCard ratingCard">
+      <Row>
         <Line
           data={{
             labels: arr,
@@ -50,6 +49,7 @@ export default function EloChart() {
             ],
           }}
           options={{
+            responsive: true,
             elements: {
               line: {
                 fill: true,
@@ -79,8 +79,10 @@ export default function EloChart() {
             },
           }}
         />
-      </div>
-      </>
+      </Row>
+
+      <Row>Win streak: 0</Row>
     </Body>
+    
   );
 }
