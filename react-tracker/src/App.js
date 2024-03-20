@@ -6,7 +6,11 @@ import ExplorePage from './pages/ExplorePage';
 import RankPage from './pages/RankPage';
 import EloChart from './pages/EloChart';
 
+
+
+
 export default function App() {
+
   return (
     <Container fluid className="App">
       <BrowserRouter>

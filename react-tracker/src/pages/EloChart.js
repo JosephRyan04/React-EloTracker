@@ -7,11 +7,16 @@ import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import {range} from "lodash";
 import Row from 'react-bootstrap/esm/Row';
+import Card from 'react-bootstrap/Card';
+import rankIcon from '../assets/caret-up-fill.svg'
+
 
 
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default function EloChart() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
+  const [elo, setElo] = useState(null);
+  const [change, setChange] = useState(null);
   const [arr, setArr] = useState();
   const {user} = useParams();
 
@@ -22,8 +27,11 @@ export default function EloChart() {
         const results = await response.json();
         console.log(results)
         console.log(user + " Named")
-        setData(results);
-        setArr(range(0, results.length))
+        
+        setData(results.datapoints);
+        setChange(results.latestchange);
+        setElo(Math.round(results.rank * 10) / 10)
+        setArr(range(0, results.datapoints.length))
       }
       else {
         console.log(BASE_API_URL +"REAL ERROR!!")
@@ -34,7 +42,18 @@ export default function EloChart() {
   
   return (
     <Body sidebar>
+
       <Row id="RankChart">
+      <Card className="chart-container">
+        <div className='d-flex flex-row'>
+          <h1>{elo}</h1>
+          <div className='d-flex flex-column'>
+          <text>Rating</text>
+          <h4>{change} <img src={rankIcon} alt='arrow-up' className="filter-green"/></h4>
+          </div>
+          
+          </div>
+
         <Line
           data={{
             labels: arr,
@@ -49,6 +68,7 @@ export default function EloChart() {
           }}
           options={{
             responsive: true,
+            maintainAspectRatio: true,
             elements: {
               line: {
                 fill: true,
@@ -78,9 +98,10 @@ export default function EloChart() {
             },
           }}
         />
+        </Card>
       </Row>
 
-      <Row>Win streak: 0</Row>
+
     </Body>
     
   );

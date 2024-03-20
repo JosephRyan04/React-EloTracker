@@ -2,13 +2,24 @@
   padding: 0;
   background-color: #23252c;
   color: #ddd;
-  height: 100vh;
+  
+  height: 100%;
+}
+
+.flex-row {
+  gap:10px;
 }
 
 .Header {
-  border-bottom: 1px solid #ddd;
-  background-color: rgba(49, 0, 87, 1);
+  border-bottom: 1px solid #000000;
+  background-color: #310057;
+  /*  rgba(49, 0, 87, 1)*/
   height: 66px;
+}
+
+h1, h4{
+  margin-top: auto;
+  color: #ddd;
 }
 
 .Sidebar {
@@ -19,7 +30,8 @@
   top: 66px;
   align-self: flex-start;
   align-items: start;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #000000;
+  background-color: #2d313a;
 }
 
 .Sidebar .nav-item {
@@ -59,6 +71,7 @@ div.container-fluid:nth-child(3) > canvas:nth-child(1){
 
 div.MainBody {
   min-height: 500px;
+  margin-top: 40px;
   
 }
 .Body {
@@ -70,9 +83,16 @@ div.MainBody {
   height: 100vh;
   padding-left:220px;
 }
-#RankChart {
-  height: 60%;
+.chart-container {
+  position: relative;
+  margin: auto;
+  width: 60%;
+  aspect-ratio: 2/1;
+  background-color: #2d313a;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
 }
+
+
 
 .row {
   justify-content: center;
@@ -85,9 +105,57 @@ div.MainBody {
   .Content{
     padding-left: 0 !important;
   }
-  #RankChart {
-    height: 200px;
+  .chart-container {
+    position: relative;
+    margin: auto;
+    height: auto;
+    width: 100vw;
+  }
+  #RankChart{
+    width: 95vw;
+    position: relative;
+  }
+
+  }
+
+#otp{
+  display: flex;
+}
+  .form-control {
+    -webkit-transition: none;
+    transition: none;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    padding: 0;
   }
   
+  .form-control:focus {
+    color: #3F4254;
+    background-color: #ffffff;
+    border-color: #884377;
+    box-shadow: 0 0 0 .25rem #431963;
+    outline: 0;
+  }
+  
+  .form-control.form-control-solid {
+    background-color: #2d313a;
+    border-color: #F3F6F9;
+    color: #DDD;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .form-control.form-control-solid:active,
+  .form-control.form-control-solid.active,
+  .form-control.form-control-solid:focus,
+  .form-control.form-control-solid.focus {
+    background-color: #23252c;
+    border-color: #EBEDF3;
+    color: #ffffff;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
 
+  .eloRow{
+    display: flex;
+    flex-direction: row;
   }
