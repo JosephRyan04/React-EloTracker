@@ -1,7 +1,6 @@
-import Container from 'react-bootstrap/esm/Container';
 import Body from '../components/Body';
-import Posts from '../components/Posts';
 import {useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -53,21 +52,20 @@ export default function FeedPage() {
   return (
     
     <Body sidebar>
-      <div className="mb-6 text-center">
-        <Container>
-  <div id="otp" className="flex justify-center">
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="first" maxLength="1" />
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="second" maxLength="1" />
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="third" maxLength="1" />
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="fourth" maxLength="1" />
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="fifth" maxLength="1" />
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="sixth" maxLength="1" />
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="seven" maxLength="1" />
-    <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="eight" maxLength="1" />
+      
+  <div className="flex">
+    <div id="otp" className="flex">
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="first" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="second" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="third" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="fourth" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="fifth" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="sixth" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="seven" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="eight" maxLength="1" />
+    </div>
+
   </div>
-  </Container>
-</div>
-      <Posts />
     </Body>
     
   );

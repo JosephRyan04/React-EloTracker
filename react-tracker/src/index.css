@@ -72,7 +72,7 @@ div.container-fluid:nth-child(3) > canvas:nth-child(1){
 div.MainBody {
   min-height: 500px;
   margin-top: 40px;
-  
+  padding-left: 0px; 
 }
 .Body {
   min-height: 500px;
@@ -81,7 +81,7 @@ div.MainBody {
 
 .Content {
   height: 100vh;
-  padding-left:220px;
+  padding-left:232px;
 }
 .chart-container {
   position: relative;
@@ -120,6 +120,7 @@ div.MainBody {
 
 #otp{
   display: flex;
+  justify-content: center;
 }
   .form-control {
     -webkit-transition: none;
