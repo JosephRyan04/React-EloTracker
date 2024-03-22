@@ -1,5 +1,6 @@
+import { Code } from '@phosphor-icons/react';
 import Body from '../components/Body';
-import {useEffect } from 'react';
+import {useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 
@@ -8,6 +9,22 @@ import Button from 'react-bootstrap/Button';
 
 export default function FeedPage() {
 
+  const [code,setCode] = useState(null);
+  function CodeEnter(){
+    var arr = [8];
+    arr[0] = document.getElementById("t1").value;
+    arr[1] = document.getElementById("t2").value;
+    arr[2] = document.getElementById("t3").value;
+    arr[3] = document.getElementById("t4").value;
+    arr[4] = document.getElementById("t5").value;
+    arr[5] = document.getElementById("t6").value;
+    arr[6] = document.getElementById("t7").value;
+    arr[7] = document.getElementById("t8").value;
+    var entry = arr.join("")
+    console.log(entry)
+    setCode(entry);
+    return entry;
+  }
   // Event listener to handle box-style connect-code input
   function CodeInput() {
     const inputs = document.querySelectorAll('#otp > *[id]');
@@ -17,6 +34,7 @@ export default function FeedPage() {
           if (i === inputs.length - 1){
             if(inputs[i].value === ''){
               inputs[i-1].focus();
+              
               return true;
             }
             return true;
@@ -25,7 +43,13 @@ export default function FeedPage() {
 
           if (i !== 0)
             inputs[i - 1].focus();
-        } else {
+        }
+        else if (event.key === "Enter"){
+          var entry = 'temp';
+          console.log(entry);
+          return CodeEnter();
+        }
+        else {
           if (i === inputs.length - 1 && inputs[i].value !== '') {
             return true;
           } else if (event.keyCode > 47 && event.keyCode < 58) {
@@ -42,7 +66,26 @@ export default function FeedPage() {
         }
       });
     }
+
+
   }
+
+  const [isLoading, setLoading] = useState(false);
+
+  
+  useEffect(() => {
+    function simulateNetworkRequest() {
+      return new Promise((resolve) => setTimeout(resolve, 2000));
+    }
+
+    if (isLoading) {
+      simulateNetworkRequest().then(() => {
+        setLoading(false);
+      });
+    }
+  }, [isLoading]);
+
+  const handleClick = () => setLoading(true);
 
   useEffect(() => {
     CodeInput();
@@ -55,16 +98,23 @@ export default function FeedPage() {
       
   <div className="flex">
     <div id="otp" className="flex">
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="first" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="second" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="third" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="fourth" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="fifth" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="sixth" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="seven" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:border-blue-400 focus:shadow-outline" type="text" id="eight" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t1" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t2" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t3" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t4" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t5" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t6" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t7" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t8" maxLength="1" />
     </div>
-
+    <h4>{code}</h4>
+    <Button
+      variant="outline-secondary"
+      disabled={isLoading}
+      onClick={!isLoading ? handleClick : null}
+    >
+      {isLoading ? 'Loading…' : 'Click to load'}
+    </Button>
   </div>
     </Body>
     
