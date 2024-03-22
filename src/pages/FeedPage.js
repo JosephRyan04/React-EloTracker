@@ -25,10 +25,11 @@ export default function FeedPage() {
 
 
 
-    let regex = /[A-Za-z]+#[0-9]+/i;
+    let regex = /^[A-Za-z]+#[0-9]+$/i;
     if(regex.test(entry)){
       console.log("Searching for: " + entry)
       setCode("Searching for: " + entry);
+      window.location.href = "http://localhost:3000/user/"+entry;
       return "Searching for: " + entry;
     }
     else{
