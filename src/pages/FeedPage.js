@@ -11,6 +11,7 @@ export default function FeedPage() {
 
   const [code,setCode] = useState(null);
   function CodeEnter(){
+    
     var arr = [8];
     arr[0] = document.getElementById("t1").value;
     arr[1] = document.getElementById("t2").value;
@@ -21,9 +22,21 @@ export default function FeedPage() {
     arr[6] = document.getElementById("t7").value;
     arr[7] = document.getElementById("t8").value;
     var entry = arr.join("")
-    console.log(entry)
-    setCode(entry);
-    return entry;
+
+
+
+    let regex = /[A-Za-z]+#[0-9]+/i;
+    if(regex.test(entry)){
+      console.log("Searching for: " + entry)
+      setCode("Searching for: " + entry);
+      return "Searching for: " + entry;
+    }
+    else{
+      setCode("Invalid code: " + entry)
+      return "Invalid Code";
+    }
+
+    
   }
   // Event listener to handle box-style connect-code input
   function CodeInput() {
@@ -45,8 +58,6 @@ export default function FeedPage() {
             inputs[i - 1].focus();
         }
         else if (event.key === "Enter"){
-          var entry = 'temp';
-          console.log(entry);
           return CodeEnter();
         }
         else {
