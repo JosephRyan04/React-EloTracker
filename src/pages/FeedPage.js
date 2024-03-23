@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 
 
 
-
 export default function FeedPage() {
 
   const [code,setCode] = useState(null);
@@ -33,7 +32,13 @@ export default function FeedPage() {
       return "Searching for: " + entry;
     }
     else{
+      document.getElementsByClassName("horizontal-shaking")[0].style.animationPlayState = "running";
+      document.getElementsByClassName("horizontal-shaking")[0].style.animationName = "none";
+      setTimeout(() => {
+        document.getElementsByClassName("horizontal-shaking")[0].style.animationName = "";
+      }, 0);
       setCode("Invalid code: " + entry)
+
       return "Invalid Code";
     }
 
@@ -78,9 +83,8 @@ export default function FeedPage() {
         }
       });
     }
-
-
   }
+
 
   const [isLoading, setLoading] = useState(false);
 
@@ -100,6 +104,7 @@ export default function FeedPage() {
   const handleClick = () => setLoading(true);
 
   useEffect(() => {
+
     CodeInput();
   });
   
@@ -108,8 +113,8 @@ export default function FeedPage() {
     
     <Body sidebar>
       
-  <div className="flex">
-    <div id="otp" className="flex">
+  <div className="d-flex flex-column align-items-center">
+    <div id="otp" className="horizontal-shaking">
       <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t1" maxLength="1" />
       <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t2" maxLength="1" />
       <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t3" maxLength="1" />
@@ -119,14 +124,16 @@ export default function FeedPage() {
       <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t7" maxLength="1" />
       <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t8" maxLength="1" />
     </div>
+    <div className="flex-column">
     <h4>{code}</h4>
     <Button
       variant="outline-secondary"
       disabled={isLoading}
-      onClick={!isLoading ? handleClick : null}
+      onClick={CodeEnter}
     >
-      {isLoading ? 'Loading…' : 'Click to load'}
+      click me
     </Button>
+    </div>
   </div>
     </Body>
     

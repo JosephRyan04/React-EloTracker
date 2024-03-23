@@ -160,3 +160,25 @@ div.MainBody {
     display: flex;
     flex-direction: row;
   }
+
+  div.horizontal-shaking {
+    animation-name: horizontal-shaking;
+    animation-duration: .35s;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+  }
+
+  @keyframes horizontal-shaking {
+    0% {background-color: #23252c;}
+    50% {background-color: red;}
+    100% {background-color: #23252c;}
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+  }
+
+  @keyframes horizontal-still {
+    0% { transform: translateX(0) }
+  }
