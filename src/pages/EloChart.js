@@ -8,7 +8,6 @@ import { Line } from "react-chartjs-2";
 import {range} from "lodash";
 import Row from 'react-bootstrap/esm/Row';
 import Card from 'react-bootstrap/Card';
-import rankIcon from '../assets/caret-up-fill.svg'
 import { CaretUp, CaretDown } from "@phosphor-icons/react";
 
 

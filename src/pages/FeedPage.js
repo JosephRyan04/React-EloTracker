@@ -28,7 +28,7 @@ export default function FeedPage() {
       console.log("Searching for: " + entry)
       setCode("Searching for: " + entry);
       entry = entry.replace('#', "-");
-      window.location.href = "http://localhost:3000/user/"+entry;
+      window.location.href = "/user/"+entry;
       return "Searching for: " + entry;
     }
     else{
