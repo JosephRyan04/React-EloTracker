@@ -9,6 +9,7 @@ import {range} from "lodash";
 import Row from 'react-bootstrap/esm/Row';
 import Card from 'react-bootstrap/Card';
 import rankIcon from '../assets/caret-up-fill.svg'
+import { CaretUp, CaretDown } from "@phosphor-icons/react";
 
 
 
@@ -49,7 +50,8 @@ export default function EloChart() {
           <h1>{elo}</h1>
           <div className='d-flex flex-column'>
           <text>Rating</text>
-          <h4>{change} <img src={rankIcon} alt='arrow-up' className="filter-green"/></h4>
+          {change >= 0 && <h4>{change}<CaretUp size={24} color="#2ECC40" weight="fill"/></h4>}
+          {change < 0 && <h4>{change}<CaretDown size={24} color="#FF4C09" weight="fill"/></h4>}
           </div>
           
           </div>

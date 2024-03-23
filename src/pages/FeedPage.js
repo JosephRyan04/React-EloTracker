@@ -122,14 +122,14 @@ export default function FeedPage() {
       <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t7" maxLength="1" />
       <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t8" maxLength="1" />
     </div>
-    <div className="flex-column">
+    <div className="d-flex flex-column align-items-center">
     <h4>{code}</h4>
     <Button
       variant="outline-secondary"
       disabled={isLoading}
       onClick={CodeEnter}
     >
-      click me
+      Search
     </Button>
     </div>
   </div>
