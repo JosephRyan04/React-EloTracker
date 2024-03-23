@@ -1,4 +1,3 @@
-import { Code } from '@phosphor-icons/react';
 import Body from '../components/Body';
 import {useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -28,6 +27,7 @@ export default function FeedPage() {
     if(regex.test(entry)){
       console.log("Searching for: " + entry)
       setCode("Searching for: " + entry);
+      entry = entry.replace('#', "-");
       window.location.href = "http://localhost:3000/user/"+entry;
       return "Searching for: " + entry;
     }
@@ -100,8 +100,6 @@ export default function FeedPage() {
       });
     }
   }, [isLoading]);
-
-  const handleClick = () => setLoading(true);
 
   useEffect(() => {
 
