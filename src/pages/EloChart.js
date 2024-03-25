@@ -8,7 +8,7 @@ import { Line } from "react-chartjs-2";
 import {range} from "lodash";
 import Row from 'react-bootstrap/esm/Row';
 import Card from 'react-bootstrap/Card';
-import { CaretUp, CaretDown } from "@phosphor-icons/react";
+import { CaretUp, CaretDown, Lightning } from "@phosphor-icons/react";
 
 
 
@@ -16,6 +16,7 @@ const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default function EloChart() {
   const [data, setData] = useState(null);
   const [elo, setElo] = useState(null);
+  const [streak,setStreak] = useState(null);
   const [change, setChange] = useState(null);
   const [arr, setArr] = useState();
   const {user} = useParams();
@@ -30,6 +31,7 @@ export default function EloChart() {
         
         setData(results.datapoints);
         setChange(results.latestchange);
+        setStreak(results.maxstreak);
         setElo(Math.round(results.rank * 10) / 10)
         setArr(range(0, results.datapoints.length))
       }
@@ -45,18 +47,25 @@ export default function EloChart() {
 
       <Row id="RankChart">
       <Card className="chart-container">
+      <div className='d-flex flex-row justify-content-between p-3'>
         <div className='d-flex flex-row'>
           <h1>{elo}</h1>
           <div className='d-flex flex-column'>
-          <text>Rating</text>
-          {change >= 0 && <h4>{change}<CaretUp size={24} color="#2ECC40" weight="fill"/></h4>}
-          {change < 0 && <h4>{change}<CaretDown size={24} color="#FF4C09" weight="fill"/></h4>}
+            <text id='rating'>Rating</text>
+            {change >= 0 && <h4 id='shift'>{change}<CaretUp size={24} color="#2ECC40" weight="fill"/></h4>}
+            {change < 0 && <h4 id='shift'>{change}<CaretDown size={24} color="#FF4C09" weight="fill"/></h4>}
           </div>
           
+          </div>
+          <div className='d-flex flex-column align-items-center'>
+          <text id='rating'>Win Streak</text>
+          <h2 id='shift'><Lightning size={24} color="#f5c211" weight="duotone"/>{streak}</h2>
+          </div>
           </div>
 
         <Line
           data={{
+            
             labels: arr,
             datasets: [
               {
@@ -66,6 +75,7 @@ export default function EloChart() {
                 borderColor: "#310057",
               },
             ],
+            text: "Monthly Revenue & Cost"
           }}
           options={{
             responsive: true,
