@@ -13,12 +13,13 @@
 .Header {
   border-bottom: 1px solid #000000;
   background-color: #310057;
+  background: linear-gradient(90deg, rgba(91,18,146,1) 0%, rgba(49,0,87,1) 100%);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
   /*  rgba(49, 0, 87, 1)*/
   height: 66px;
 }
 
-h1,h2,h4{
+h1,h2,h4,h5 {
   margin: 0;
   color: #ddd;
 }
@@ -199,4 +200,10 @@ div.MainBody {
   #shift {
     position: relative;
     bottom: 8px;
+  }
+  
+  #divline {
+    position: relative;
+    border-color: #1e1f25;
+    bottom: 15px;
   }

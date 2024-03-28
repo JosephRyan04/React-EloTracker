@@ -52,17 +52,17 @@ export default function EloChart() {
           <h1>{elo}</h1>
           <div className='d-flex flex-column'>
             <text id='rating'>Rating</text>
-            {change >= 0 && <h4 id='shift'>{change}<CaretUp size={24} color="#2ECC40" weight="fill"/></h4>}
+            {change >= 0 && <h4 id='shift'>{change}<CaretUp size={24} color="#58b501" weight="fill"/></h4>}
             {change < 0 && <h4 id='shift'>{change}<CaretDown size={24} color="#FF4C09" weight="fill"/></h4>}
           </div>
           
           </div>
           <div className='d-flex flex-column align-items-center'>
-          <text id='rating'>Win Streak</text>
-          <h2 id='shift'><Lightning size={24} color="#f5c211" weight="duotone"/>{streak}</h2>
+          <text id='rating'>Best Win Streak</text>
+          <h4 id='shift'><Lightning size={24} color="#e0af00" weight="duotone"/>{streak}</h4>
           </div>
           </div>
-
+        <div id='divline' className='d-flex border-bottom'></div>
         <Line
           data={{
             
@@ -83,7 +83,7 @@ export default function EloChart() {
             elements: {
               line: {
                 fill: true,
-                tension: .2,
+                tension: 0,
               },
             },
             scales: {
@@ -103,8 +103,9 @@ export default function EloChart() {
               },
             },
             plugins: {
+
               title: {
-                text: "Monthly Revenue & Cost",
+                text: "Glicko-2 Elo Ratings",
               },
             },
           }}
