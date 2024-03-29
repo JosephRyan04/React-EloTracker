@@ -112,6 +112,7 @@ export default function EloChart() {
   const [arr, setArr] = useState();
   const [tier, setTier] = useState(null)
   const {user} = useParams();
+  console.log(tier);
 
   useEffect(() => {
     (async () => {
