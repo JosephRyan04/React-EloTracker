@@ -11,7 +11,7 @@ import Card from 'react-bootstrap/Card';
 import rankIcon from '../assets/caret-up-fill.svg'
 import { CaretUp, CaretDown } from "@phosphor-icons/react";
 
-const CB = (0,
+const rank_tier = (0,
   keyBy)([{
       key: "none",
       name: "None"
@@ -99,8 +99,9 @@ const CB = (0,
       color: "#E51D13"
   }], "key")
 
-function nominalRank(e,t,n){
-  return n < 5 ? CB.pending : e >= 2191.75 && t ? CB.grandmaster : e >= 2350 ? CB.master3 : e >= 2275 ? CB.master2 : e >= 2191.75 ? CB.master1 : e >= 2136.28 ? CB.diamond3 : e >= 2073.67 ? CB.diamond2 : e >= 2003.92 ? CB.diamond1 : e >= 1927.03 ? CB.plat3 : e >= 1843 ? CB.plat2 : e >= 1751.83 ? CB.plat1 : e >= 1653.52 ? CB.gold3 : e >= 1548.07 ? CB.gold2 : e >= 1435.48 ? CB.gold1 : e >= 1315.75 ? CB.silver3 : e >= 1188.88 ? CB.silver2 : e >= 1054.87 ? CB.silver1 : e >= 913.72 ? CB.bronze3 : e >= 765.43 ? CB.bronze2 : CB.bronze1
+function nominalRank(rating,placement,setcount){
+  console.log(placement);
+  return setcount < 5 ? rank_tier.pending : rating >= 2191.75 && placement ? rank_tier.grandmaster : rating >= 2350 ? rank_tier.master3 : rating >= 2275 ? rank_tier.master2 : rating >= 2191.75 ? rank_tier.master1 : rating >= 2136.28 ? rank_tier.diamond3 : rating >= 2073.67 ? rank_tier.diamond2 : rating >= 2003.92 ? rank_tier.diamond1 : rating >= 1927.03 ? rank_tier.plat3 : rating >= 1843 ? rank_tier.plat2 : rating >= 1751.83 ? rank_tier.plat1 : rating >= 1653.52 ? rank_tier.gold3 : rating >= 1548.07 ? rank_tier.gold2 : rating >= 1435.48 ? rank_tier.gold1 : rating >= 1315.75 ? rank_tier.silver3 : rating >= 1188.88 ? rank_tier.silver2 : rating >= 1054.87 ? rank_tier.silver1 : rating >= 913.72 ? rank_tier.bronze3 : rating >= 765.43 ? rank_tier.bronze2 : rank_tier.bronze1
 }
 
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
@@ -109,6 +110,7 @@ export default function EloChart() {
   const [elo, setElo] = useState(null);
   const [change, setChange] = useState(null);
   const [arr, setArr] = useState();
+  const [tier, setTier] = useState(null)
   const {user} = useParams();
 
   useEffect(() => {
@@ -122,7 +124,8 @@ export default function EloChart() {
         setChange(results.latestchange);
         setElo(Math.round(results.rank * 10) / 10)
         setArr(range(0, results.datapoints.length))
-        console.log(nominalRank(results.rank,results.globalrank,results.updatecount))
+        setTier(nominalRank(results.rank,results.globalrank + results.regionalrank,results.updatecount));
+        
       }
       else {
         console.log(BASE_API_URL +"get_users bad request, check api server")
