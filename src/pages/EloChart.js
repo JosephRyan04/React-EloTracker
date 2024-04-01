@@ -10,6 +10,8 @@ import Row from 'react-bootstrap/esm/Row';
 import Card from 'react-bootstrap/Card';
 import { CaretUp, CaretDown, Lightning } from "@phosphor-icons/react";
 
+
+
 const rank_tier = (0,
   keyBy)([{
       key: "none",
@@ -105,14 +107,16 @@ function nominalRank(rating,placement,setcount){
 
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default function EloChart() {
+  const [response, setResponse] = useState("");
   const [data, setData] = useState(null);
   const [elo, setElo] = useState(null);
   const [streak,setStreak] = useState(null);
   const [change, setChange] = useState(null);
   const [arr, setArr] = useState();
-  const [tier, setTier] = useState(null)
+  const [tier, setTier] = useState("blank")
   const {user} = useParams();
   console.log(tier);
+  
 
   useEffect(() => {
     (async () => {
@@ -121,12 +125,17 @@ export default function EloChart() {
         const results = await response.json();
         console.log(results)
         
+        setResponse(results);
         setData(results.datapoints);
         setChange(results.latestchange);
         setStreak(results.maxstreak);
         setElo(Math.round(results.rank * 10) / 10)
         setArr(range(0, results.datapoints.length))
         setTier(nominalRank(results.rank,results.globalrank + results.regionalrank,results.updatecount));
+        // const img = document.createElement('img');
+        // img.loading = 'lazy';
+        // img.src = `src/assets/${tier.key}.svg`;
+
         
       }
       else {
@@ -141,19 +150,24 @@ export default function EloChart() {
     <Body sidebar>
 
       <Row id="RankChart">
+      <Card className="d-flex flex-column align-items-center p-3">
+      <img src={`/icons/${tier.key}.svg`} alt={`Rank icon: ${tier.key}`} width="50"/>
+        <h4>{response.code}</h4>
+        <b id='rating'>{tier.name}</b>
+      </Card>
       <Card className="chart-container">
       <div className='d-flex flex-row justify-content-between p-3'>
         <div className='d-flex flex-row'>
           <h1>{elo}</h1>
           <div className='d-flex flex-column'>
-            <text id='rating'>Rating</text>
+            <b id='rating'>Rating</b>
             {change >= 0 && <h4 id='shift'>{change}<CaretUp size={24} color="#58b501" weight="fill"/></h4>}
             {change < 0 && <h4 id='shift'>{change}<CaretDown size={24} color="#FF4C09" weight="fill"/></h4>}
           </div>
           
           </div>
           <div className='d-flex flex-column align-items-center'>
-          <text id='rating'>Best Win Streak</text>
+          <b id='rating'>Best Win Streak</b>
           <h4 id='shift'><Lightning size={24} color="#e0af00" weight="duotone"/>{streak}</h4>
           </div>
           </div>
