@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import {range, keyBy} from "lodash";
-import Row from 'react-bootstrap/esm/Row';
+import {Row, Col} from 'react-bootstrap/esm/';
 import Card from 'react-bootstrap/Card';
 import { CaretUp, CaretDown, Lightning } from "@phosphor-icons/react";
 
@@ -147,16 +147,19 @@ export default function EloChart() {
   
 
   return (
-    <Body sidebar>
+    <Body>
 
       <Row id="RankChart" className='d-flex gap-2'>
-        <Card className="d-flex flex-row p-3 justify-content-between">
+      <Col md={8}>
+      <Card className="chart-container p-0">
+      <div className="card-header d-flex flex-row gap-5 p-3">
           <div className='d-flex flex-row'>
           <img src={`/icons/${tier.key}.svg`} alt={`Rank icon: ${tier.key}`} width="65"/>
           <div className='d-flex flex-column align-items-center'>
           <h4>{response.code}</h4>
             <b id='rating'>{tier.name}</b>
           </div>
+
           </div>
 
           <div className='d-flex flex-row'>
@@ -169,9 +172,8 @@ export default function EloChart() {
           
           </div>
 
-        </Card>
-      <Card className="chart-container">
-      {/* <div id='divline' className='d-flex border-bottom'></div> */}
+        </div>
+        <div className='d-flex chart-div p-3'>
         <Line
           data={{
             
@@ -219,6 +221,15 @@ export default function EloChart() {
             },
           }}
         />
+        </div>
+        </Card>
+
+        </Col>
+
+        <Col>
+        <Card className='p-3'>
+          <h4>Placements</h4>
+          <b id='rating'>Global: {response.globalrank}</b>
         </Card>
         <Card>
         <div className='d-flex flex-row justify-content-between p-3'>
@@ -228,6 +239,8 @@ export default function EloChart() {
           </div>
           </div>
         </Card>
+        </Col>
+
       </Row>
 
 

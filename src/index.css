@@ -83,18 +83,30 @@ div.MainBody {
 }
 
 .Content {
-  height: 100vh;
-  padding-left:232px;
+	height: 100vh;
+	width: calc(100% - 2rem);
+	margin: 1rem auto;
+	max-width: 1600px;
 }
 .card {
   position: relative;
   margin: auto;
-  width: 60%;
+  width: 100%;
   background-color: #2d313a;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
 }
 
+.card-header {
+  background-color: #1c1e22;
+  border: none;
+}
+
 .chart-container {
+  aspect-ratio: 2/1;
+}
+
+.chart-div {
+  justify-content: center;
   aspect-ratio: 2/1;
 }
 
