@@ -149,29 +149,29 @@ export default function EloChart() {
   return (
     <Body sidebar>
 
-      <Row id="RankChart">
-      <Card className="d-flex flex-column align-items-center p-3">
-      <img src={`/icons/${tier.key}.svg`} alt={`Rank icon: ${tier.key}`} width="50"/>
-        <h4>{response.code}</h4>
-        <b id='rating'>{tier.name}</b>
-      </Card>
-      <Card className="chart-container">
-      <div className='d-flex flex-row justify-content-between p-3'>
-        <div className='d-flex flex-row'>
-          <h1>{elo}</h1>
-          <div className='d-flex flex-column'>
-            <b id='rating'>Rating</b>
-            {change >= 0 && <h4 id='shift'>{change}<CaretUp size={24} color="#58b501" weight="fill"/></h4>}
-            {change < 0 && <h4 id='shift'>{change}<CaretDown size={24} color="#FF4C09" weight="fill"/></h4>}
+      <Row id="RankChart" className='d-flex gap-2'>
+        <Card className="d-flex flex-row p-3 justify-content-between">
+          <div className='d-flex flex-row'>
+          <img src={`/icons/${tier.key}.svg`} alt={`Rank icon: ${tier.key}`} width="65"/>
+          <div className='d-flex flex-column align-items-center'>
+          <h4>{response.code}</h4>
+            <b id='rating'>{tier.name}</b>
           </div>
+          </div>
+
+          <div className='d-flex flex-row'>
+            <h1>{elo}</h1>
+            <div className='d-flex flex-column'>
+              <b id='rating'>Rating</b>
+              {change >= 0 && <h4 id='shift'>{change}<CaretUp size={24} color="#58b501" weight="fill"/></h4>}
+              {change < 0 && <h4 id='shift'>{change}<CaretDown size={24} color="#FF4C09" weight="fill"/></h4>}
+            </div>
           
           </div>
-          <div className='d-flex flex-column align-items-center'>
-          <b id='rating'>Best Win Streak</b>
-          <h4 id='shift'><Lightning size={24} color="#e0af00" weight="duotone"/>{streak}</h4>
-          </div>
-          </div>
-        <div id='divline' className='d-flex border-bottom'></div>
+
+        </Card>
+      <Card className="chart-container">
+      {/* <div id='divline' className='d-flex border-bottom'></div> */}
         <Line
           data={{
             
@@ -219,6 +219,14 @@ export default function EloChart() {
             },
           }}
         />
+        </Card>
+        <Card>
+        <div className='d-flex flex-row justify-content-between p-3'>
+          <div className='d-flex flex-column align-items-center'>
+          <b id='rating'>Best Win Streak</b>
+          <h4 id='shift'><Lightning size={24} color="#e0af00" weight="duotone"/>{streak}</h4>
+          </div>
+          </div>
         </Card>
       </Row>
 
