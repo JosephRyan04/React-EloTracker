@@ -58,7 +58,8 @@ h1,h2,h4,h5 {
 
 /* Header Text Colors */
 .navbar-brand {
-  color:#ddd;
+  font-weight: 650;
+  color:#ffffff;
 }
 
 .navbar-brand:focus, .navbar-brand:hover {
@@ -90,7 +91,6 @@ div.MainBody {
 }
 .card {
   position: relative;
-  margin: auto;
   width: 100%;
   background-color: #2d313a;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;

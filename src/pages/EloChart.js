@@ -226,10 +226,16 @@ export default function EloChart() {
 
         </Col>
 
-        <Col>
+        <Col className='d-flex flex-column gap-3 align-items-start'>
         <Card className='p-3'>
           <h4>Placements</h4>
           <b id='rating'>Global: {response.globalrank}</b>
+        </Card>
+        <Card className='d-flex flex-row p-3'>
+          <h4>Stats</h4>
+          <b id='rating'>Total Games: {response.updatecount}</b>
+          <b id='rating'>Wins: {response.wins}</b>
+          <b id='rating'>Losses: {response.losses}</b>
         </Card>
         <Card>
         <div className='d-flex flex-row justify-content-between p-3'>
