@@ -9,7 +9,7 @@ import {round, keyBy} from "lodash";
 import {Row, Col} from 'react-bootstrap/esm/';
 import Card from 'react-bootstrap/Card';
 import 'chartjs-adapter-date-fns';
-import { CaretUp, CaretDown, Lightning, Trophy} from "@phosphor-icons/react";
+import { CaretUp, CaretDown, Lightning} from "@phosphor-icons/react";
 
 
 
@@ -121,7 +121,6 @@ function mapData(x,y){
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default function EloChart() {
   const [response, setResponse] = useState("blank2");
-  const [data, setData] = useState(null);
   const [elo, setElo] = useState(null);
   const [streak,setStreak] = useState(null);
   const [change, setChange] = useState(null);
@@ -139,7 +138,6 @@ export default function EloChart() {
         console.log(results)
         
         setResponse(results);
-        setData(results.datapoints);
         setChange(results.latestchange);
         setStreak(results.maxstreak);
         setElo(Math.round(results.rank * 10) / 10)
@@ -153,7 +151,6 @@ export default function EloChart() {
       }
       else {
         console.log(BASE_API_URL +"get_users bad request, check api server")
-        setData(null);
       }
     })();
   }, [user]);
