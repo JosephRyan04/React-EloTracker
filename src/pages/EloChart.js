@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 // eslint-disable-next-line
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-import {range, keyBy} from "lodash";
+import {round, keyBy} from "lodash";
 import {Row, Col} from 'react-bootstrap/esm/';
 import Card from 'react-bootstrap/Card';
 import 'chartjs-adapter-date-fns';
-import { CaretUp, CaretDown, Lightning } from "@phosphor-icons/react";
+import { CaretUp, CaretDown, Lightning, Trophy} from "@phosphor-icons/react";
 
 
 
@@ -257,12 +257,24 @@ export default function EloChart() {
           <h4>Placements</h4>
           <b id='rating'>Global: {response.globalrank}</b>
         </Card>
-        <Card className='grid p-3'>
+        <Card className='grid'>
         <ul class="list-group list-group-flush">
           <h4>Stats</h4>
-          <li class="list-group-item"><b id='rating'>Total Games: {response.updatecount}</b></li>
-          <li class="list-group-item"><b id='rating'>Wins: {response.wins}</b></li>
-          <li class="list-group-item"><b id='rating'>Losses: {response.losses}</b></li>
+          <li class="list-group-item light"><b id='rating'>Total Games: {response.updatecount}</b></li>
+          <li class="list-group-item dark">
+            <div className='d-flex flex-row align-items-end gap-3'>
+            
+          <div className='d-flex flex-column'>
+              <b id='rating'>Record</b>
+              <b className='stat-text'> {response.wins}W - {response.losses}L</b>
+            </div>
+            <div className='d-flex flex-column'>
+              <b id='rating'>(W/L)</b>
+              <b className='stat-text'>({round(response.wins / response.losses, 2)})</b>
+            </div>
+            </div>
+            </li>
+          <li class="list-group-item light"><b id='rating'>Losses: {response.losses}</b></li>
           </ul>
         </Card>
         <Card>
