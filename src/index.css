@@ -179,24 +179,26 @@ div.MainBody {
   .form-control {
     -webkit-transition: none;
     transition: none;
+    font-size:x-large;
     width: 64px;
     height: 64px;
     text-align: center;
     padding: 0;
+    border-radius: 0%;
+    border: none;
+    border-bottom: 1px solid white;
   }
   
   .form-control:focus {
     color: #3F4254;
     background-color: #ffffff;
     border-color: #884377;
-    box-shadow: 0 0 0 .25rem #431963;
-    outline: 0;
+    box-shadow: none;
   }
   
   .form-control.form-control-solid {
-    background-color: #2d313a;
-    border-color: #F3F6F9;
-    color: #DDD;
+    background-color: #2d313a00;
+    color: #dddddd70;
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   }
   
@@ -204,12 +206,13 @@ div.MainBody {
   .form-control.form-control-solid.active,
   .form-control.form-control-solid:focus,
   .form-control.form-control-solid.focus {
-    background-color: #23252c;
-    border-color: #EBEDF3;
-    color: #ffffff;
+    text-decoration: underline;
+    color: #ffffff7a;
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   }
-
+  .ex {
+    color: #ddd !important;
+  }
   .eloRow{
     display: flex;
     flex-direction: row;

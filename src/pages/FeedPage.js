@@ -45,15 +45,33 @@ export default function FeedPage() {
     
   }
   // Event listener to handle box-style connect-code input
+  let showExample = true;
   function CodeInput() {
+    
     const inputs = document.querySelectorAll('#otp > *[id]');
+    inputs[0].value = "A";
+    inputs[1].value = "B";
+    inputs[2].value = "C";
+    inputs[3].value = "D";
+    inputs[4].value = "#";
+    inputs[5].value = "1";
+    inputs[6].value = "2";
+    inputs[7].value = "3";
+    
     for (let i = 0; i < inputs.length; i++) {
+      
       inputs[i].addEventListener('keydown', function(event) {
+        if (event.key && setExample()){
+          for (let i = 0; i < inputs.length; i++){
+          inputs[i].classList.add("ex");
+          inputs[i].value = '';
+          }
+          }
+          
         if (event.key === "Backspace") {
           if (i === inputs.length - 1){
             if(inputs[i].value === ''){
               inputs[i-1].focus();
-              
               return true;
             }
             return true;
@@ -64,11 +82,12 @@ export default function FeedPage() {
             inputs[i - 1].focus();
         }
         else if (event.key === "Enter"){
-          return CodeEnter();
+          CodeEnter();
+          return;
         }
         else {
           if (i === inputs.length - 1 && inputs[i].value !== '') {
-            return true;
+            
           } else if (event.keyCode > 47 && event.keyCode < 58) {
             inputs[i].value = event.key;
             if (i !== inputs.length - 1)
@@ -84,6 +103,22 @@ export default function FeedPage() {
       });
     }
   }
+
+  // Acts as latch to only show the example code once. Avoids the unsafe referance of using
+  // only a showExample bool  
+  function setExample(){
+    if (showExample){
+      showExample = false;
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+
+
+
 
 
   const [isLoading, setLoading] = useState(false);
@@ -101,10 +136,10 @@ export default function FeedPage() {
     }
   }, [isLoading]);
 
-  useEffect(() => {
-
+  window.onload = function() {
+    document.getElementById("t1").focus();
     CodeInput();
-  });
+  };
   
 
   return (
@@ -113,14 +148,14 @@ export default function FeedPage() {
       
   <div className="d-flex flex-column align-items-center">
     <div id="otp" className="horizontal-shaking">
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t1" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t2" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t3" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t4" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t5" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t6" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t7" maxLength="1" />
-      <input className="m-2 text-center form-control form-control-solid rounded focus:shadow-outline" type="text" id="t8" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t1" maxLength="1"/>
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t2" maxLength="1"/>
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t3" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t4" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t5" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t6" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t7" maxLength="1" />
+      <input className="m-2 text-center form-control form-control-solid focus:shadow-outline" type="text" id="t8" maxLength="1" />
     </div>
     <div className="d-flex flex-column align-items-center">
     <h4>{code}</h4>
