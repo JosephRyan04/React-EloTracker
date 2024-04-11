@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 // eslint-disable-next-line
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-import {round, keyBy} from "lodash";
+import {round, keyBy, max, size} from "lodash";
 import {Row, Col} from 'react-bootstrap/esm/';
 import Card from 'react-bootstrap/Card';
 import 'chartjs-adapter-date-fns';
@@ -113,7 +113,6 @@ function mapData(x,y){
         y: y[i]
       };
     });
-    console.log(resp.x);
     return resp;
   
 }
@@ -124,17 +123,16 @@ export default function EloChart() {
   const [elo, setElo] = useState(null);
   const [streak,setStreak] = useState(null);
   const [change, setChange] = useState(null);
-  const [arr, setArr] = useState();
+  const [arr, setArr] = useState("blank");
   const [tier, setTier] = useState("blank")
   const {user} = useParams();
-  console.log(tier);
   
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/api/user-ranks?player=' + user);
-      if (response.ok) {
-        const results = await response.json();
+      const apiResponse = await fetch('/api/user-ranks?player=' + user);
+      if (apiResponse.ok) {
+        const results = await apiResponse.json();
         console.log(results)
         
         setResponse(results);
@@ -250,18 +248,42 @@ export default function EloChart() {
         </Col>
 
         <Col className='d-flex flex-column gap-3 align-items-start'>
+        {(response.regionalrank || response.globalrank) &&
         <Card className='grid p-3'>
-          <h4>Placements</h4>
-          <b id='rating'>Global: {response.globalrank}</b>
-        </Card>
-        <Card className='grid'>
-        <ul class="list-group list-group-flush">
-          <h4>Stats</h4>
-          <li class="list-group-item light"><b id='rating'>Total Games: {response.updatecount}</b></li>
-          <li class="list-group-item dark">
-            <div className='d-flex flex-row align-items-end gap-3'>
+        <h4>Placements</h4>
+        
+        <div className='d-flex flex-row justify-content-between'>
+            <b id='rating'>Global</b>
+            <b className='stat-text'>#{response.globalrank}</b>
+          </div>
+          <div className='d-flex flex-row justify-content-between'>
+            <b id='rating'>Regional</b>
+            <b className='stat-text'>#{response.regionalrank}</b>
+          </div>
+          
+        
+      </Card> }
+        
+        <Card className='grid p-3'>
+
             
+          <h4>Stats</h4>
+          
+          <div className='d-flex flex-row align-items-end gap-3'>
           <div className='d-flex flex-column'>
+              <b id='rating'>Set Count</b>
+              <b className='stat-text'>{response.updatecount}</b>
+            </div>
+            <div className='d-flex flex-column'>
+              <b id='rating'>Update Count</b>
+              <b className='stat-text'>{size(response.datapoints)}</b>
+            </div>
+            </div>
+
+            
+            <div className='d-flex flex-row align-items-end gap-3'>
+          <div className='d-flex flex-column'>
+          <h5>Totals</h5>
               <b id='rating'>Record</b>
               <b className='stat-text'> {response.wins}W - {response.losses}L</b>
             </div>
@@ -270,16 +292,20 @@ export default function EloChart() {
               <b className='stat-text'>({round(response.wins / response.losses, 2)})</b>
             </div>
             </div>
-            </li>
-          <li class="list-group-item light"><b id='rating'>Losses: {response.losses}</b></li>
-          </ul>
+
+
+
         </Card>
         <Card>
-        <div className='d-flex flex-row justify-content-between p-3'>
-          <div className='d-flex flex-column align-items-center'>
+        <div className='d-flex flex-row align-items-end gap-3 p-3'>
+          <div className='d-flex flex-column'>
           <b id='rating'>Best Win Streak</b>
-          <h4 id='shift'><Lightning size={24} color="#e0af00" weight="duotone"/>{streak}</h4>
+          <b className='stat-text'><Lightning size={20} color="#e0af00" weight="duotone"/>{streak}</b>
           </div>
+          <div className='d-flex flex-column'>
+              <b id='rating'>Peak Rating</b>
+              <b className='stat-text'>{max(response.datapoints)}</b>
+            </div>
           </div>
         </Card>
         </Col>
