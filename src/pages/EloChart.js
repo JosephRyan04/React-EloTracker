@@ -179,9 +179,11 @@ export default function EloChart() {
             </div>
           
           </div>
-
+          
         </div>
-        <div className='d-flex chart-div p-3'>
+
+        <hr/>
+          <div className='d-flex chart-div p-3'>
         <Line
           data={{
             
@@ -190,7 +192,7 @@ export default function EloChart() {
               {
                 label: "Glicko-2 Rating",
                 data: arr,
-                backgroundColor: "rgba(49, 0, 87, 0.2)",
+                backgroundColor: "rgba(49, 0, 87, 0.3)",
                 borderColor: "#310057",
               },
             ],
@@ -268,22 +270,22 @@ export default function EloChart() {
 
             
           <h4>Stats</h4>
-          
+          <hr/>
           <div className='d-flex flex-row align-items-end gap-3'>
           <div className='d-flex flex-column'>
               <b id='rating'>Set Count</b>
               <b className='stat-text'>{response.updatecount}</b>
             </div>
+            
             <div className='d-flex flex-column'>
               <b id='rating'>Update Count</b>
               <b className='stat-text'>{size(response.datapoints)}</b>
             </div>
             </div>
-
+            <hr/>
             
             <div className='d-flex flex-row align-items-end gap-3'>
           <div className='d-flex flex-column'>
-          <h5>Totals</h5>
               <b id='rating'>Record</b>
               <b className='stat-text'> {response.wins}W - {response.losses}L</b>
             </div>
