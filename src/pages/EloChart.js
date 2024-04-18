@@ -8,6 +8,7 @@ import { Line } from "react-chartjs-2";
 import {round, keyBy, max, size} from "lodash";
 import {Row, Col} from 'react-bootstrap/esm/';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import 'chartjs-adapter-date-fns';
 import { CaretUp, CaretDown, Lightning} from "@phosphor-icons/react";
 
@@ -120,6 +121,7 @@ function mapData(x,y){
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default function EloChart() {
   const [response, setResponse] = useState("blank2");
+  const [RCode, setRCode] = useState(null);
   const [elo, setElo] = useState(null);
   const [streak,setStreak] = useState(null);
   const [change, setChange] = useState(null);
@@ -131,6 +133,7 @@ export default function EloChart() {
   useEffect(() => {
     (async () => {
       const apiResponse = await fetch('/api/user-ranks?player=' + user);
+      setRCode(apiResponse.ok);
       if (apiResponse.ok) {
         const results = await apiResponse.json();
         console.log(results)
@@ -141,9 +144,6 @@ export default function EloChart() {
         setElo(Math.round(results.rank * 10) / 10)
         setArr(mapData(results.timestamps,results.datapoints));
         setTier(nominalRank(results.rank,results.globalrank + results.regionalrank,results.updatecount));
-        // const img = document.createElement('img');
-        // img.loading = 'lazy';
-        // img.src = `src/assets/${tier.key}.svg`;
 
         
       }
@@ -155,7 +155,8 @@ export default function EloChart() {
   
 
   return (
-    <Body>
+    
+    <Body>{RCode &&
 
       <Row id="RankChart" className='d-flex gap-2'>
       <Col md={8}>
@@ -209,8 +210,8 @@ export default function EloChart() {
             },
             scales: {
               x: {
-                display: true,
-                type: 'time',
+                display: false,
+                //type: 'time',
                     time: {
       unit: 'day',
       displayFormats: {
@@ -310,10 +311,13 @@ export default function EloChart() {
             </div>
           </div>
         </Card>
+        <Button variant="outline-success" href={`https://slippi.gg/user/${user}`}><img src={`/icons/SlippiLogo.svg`} alt='Slp logo' width="24"/>  Profile</Button>{' '}
         </Col>
 
       </Row>
 
+        }
+        {!RCode && <h1>User not found</h1>}
 
     </Body>
     

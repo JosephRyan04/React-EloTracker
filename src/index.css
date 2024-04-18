@@ -133,6 +133,13 @@ div.MainBody {
 .grid {
   display: grid;
 }
+.btn-outline-success {
+	--bs-btn-color: #fff;
+	--bs-btn-border-color: #208e2c;
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-bg: #208e2c;
+	--bs-btn-hover-border-color: #208e2c;
+}
 
 .card-header {
   background-color: #010106;
