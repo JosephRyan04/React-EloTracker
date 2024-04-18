@@ -10,7 +10,7 @@ import {Row, Col} from 'react-bootstrap/esm/';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import 'chartjs-adapter-date-fns';
-import { CaretUp, CaretDown, Lightning} from "@phosphor-icons/react";
+import { CaretUp, CaretDown, Lightning, ArrowsClockwise, UserPlus} from "@phosphor-icons/react";
 
 
 
@@ -121,7 +121,10 @@ function mapData(x,y){
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default function EloChart() {
   const [response, setResponse] = useState("blank2");
-  const [RCode, setRCode] = useState(null);
+
+  const [responseCode, setResponseCode] = useState(null);
+  const [slpResponse, setSlpResponse] = useState(false);
+  
   const [elo, setElo] = useState(null);
   const [streak,setStreak] = useState(null);
   const [change, setChange] = useState(null);
@@ -133,7 +136,7 @@ export default function EloChart() {
   useEffect(() => {
     (async () => {
       const apiResponse = await fetch('/api/user-ranks?player=' + user);
-      setRCode(apiResponse.ok);
+      setResponseCode(apiResponse.ok);
       if (apiResponse.ok) {
         const results = await apiResponse.json();
         console.log(results)
@@ -148,15 +151,30 @@ export default function EloChart() {
         
       }
       else {
-        console.log(BASE_API_URL +"get_users bad request, check api server")
+        console.log(BASE_API_URL +" get_users bad request, check api server")
       }
     })();
   }, [user]);
+
+  function UpdateElo(){
+    (async () => {
+      const apiResponse = await fetch('/api/update-elo/' + user);
+      if (apiResponse.ok) {
+        const results = await apiResponse.json();
+        console.log(results);
+        document.location.reload();
+      }
+      else {
+        setSlpResponse(true);
+        console.log(BASE_API_URL +" Update Elo bad request");
+      }
+    })();
+  }
   
 
   return (
     
-    <Body>{RCode &&
+    <Body>{responseCode &&
 
       <Row id="RankChart" className='d-flex gap-2'>
       <Col md={8}>
@@ -225,14 +243,26 @@ export default function EloChart() {
       tooltipFormat: 'MMM dd HH:mm'
     },
                 grid: {
-                  display: false
-                }
+                  display: true,
+                  zeroLineColor: '#fff',
+                  borderColor: "#fff"
+                },
+                border: {
+                  enabled: true,
+                  color: '#fff',
+                  zeroLineColor: '#fff',
+                  display: true
+              }
+                
               },
               y: {
                 display: true,
                 grace: 100,
                 ticks: {
                   stepSize: 0
+                },
+                grid: {
+                  color: "#212529",
                 }
 
               },
@@ -279,7 +309,7 @@ export default function EloChart() {
             </div>
             
             <div className='d-flex flex-column'>
-              <b id='rating'>Update Count</b>
+              <b id='rating'>Datapoints</b>
               <b className='stat-text'>{size(response.datapoints)}</b>
             </div>
             </div>
@@ -311,13 +341,21 @@ export default function EloChart() {
             </div>
           </div>
         </Card>
-        <Button variant="outline-success" href={`https://slippi.gg/user/${user}`}><img src={`/icons/SlippiLogo.svg`} alt='Slp logo' width="24"/>  Profile</Button>{' '}
+        <div className='d-flex flex-row align-items-center gap-1'>
+        <Button id='slp-button' variant="outline-success" href={`https://slippi.gg/user/${user}`}><img src={`/icons/SlippiLogo.svg`} alt='Slp logo' height="24"/>  Profile</Button>{' '}
+        <Button id='update-button' variant="outline-success" onClick={UpdateElo}><ArrowsClockwise size={24} color="#ffffff"/>  Update</Button>{' '}
+        </div>
         </Col>
 
       </Row>
 
         }
-        {!RCode && <h1>User not found</h1>}
+        {!responseCode &&<div>
+         <h1>User not in database yet: {user}</h1>
+         <Button id='update-button' variant="outline-success" onClick={UpdateElo}><UserPlus size={24} color="#ffffff"/>  Add User</Button>{' '}
+         {slpResponse && <h3>User does not exist in slippi, please check for typos in the connect code</h3>}
+         </div>
+         }
 
     </Body>
     

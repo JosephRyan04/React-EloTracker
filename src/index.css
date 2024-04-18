@@ -133,12 +133,26 @@ div.MainBody {
 .grid {
   display: grid;
 }
-.btn-outline-success {
+#slp-button {
 	--bs-btn-color: #fff;
 	--bs-btn-border-color: #208e2c;
 	--bs-btn-hover-color: #fff;
 	--bs-btn-hover-bg: #208e2c;
 	--bs-btn-hover-border-color: #208e2c;
+  --bs-btn-bg: #010106;
+  --bs-btn-active-bg: #9eff9be0;
+  --bs-btn-active-border-color: #fff;
+}
+
+#update-button {
+	--bs-btn-color: #fff;
+	--bs-btn-border-color: #5b1292;
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-bg: #5b1292;
+	--bs-btn-hover-border-color: #5b1292;
+  --bs-btn-bg: #010106;
+  --bs-btn-active-bg: #daaaff;
+  --bs-btn-active-border-color: #fff;
 }
 
 .card-header {

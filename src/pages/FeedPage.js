@@ -1,13 +1,14 @@
 import Body from '../components/Body';
 import {useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-
+import {Shuffle} from "@phosphor-icons/react";
 
 
 
 export default function FeedPage() {
 
   const [code,setCode] = useState(null);
+
   function CodeEnter(){
     
     var arr = [8];
@@ -41,8 +42,24 @@ export default function FeedPage() {
 
       return "Invalid Code";
     }
+    
 
     
+  }
+  function RandomUser(){
+    (async () => {
+      const apiResponse = await fetch('/api/random-user');
+      if (apiResponse.ok) {
+        let results = await apiResponse.json();
+        console.log(results);
+        results = results.replace('#', "-");
+        window.location.href = "/user/" + results;
+      }
+      else {
+        console.log(" Random user bad request");
+        window.location.href = "/user/ABC#123"
+      }
+    })();
   }
   // Event listener to handle box-style connect-code input
   let showExample = true;
@@ -140,6 +157,7 @@ export default function FeedPage() {
     document.getElementById("t1").focus();
     CodeInput();
   };
+
   
 
   return (
@@ -165,6 +183,14 @@ export default function FeedPage() {
       onClick={CodeEnter}
     >
       Search
+    </Button>
+    <Button
+      variant="outline-success"
+      id='update-button'
+      disabled={isLoading}
+      onClick={RandomUser}
+    >
+      <Shuffle size={24} color="#ffffff" />  Random
     </Button>
     </div>
   </div>
