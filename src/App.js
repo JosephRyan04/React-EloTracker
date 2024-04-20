@@ -5,6 +5,7 @@ import FeedPage from './pages/FeedPage';
 import ExplorePage from './pages/ExplorePage';
 import RankPage from './pages/RankPage';
 import EloChart from './pages/EloChart';
+import Leaderboard from './pages/Leaderboard';
 
 
 
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/" element={<FeedPage />} />
           <Route path="/grid" element={<RankPage />} />
           <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/user/:user" element={<EloChart />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

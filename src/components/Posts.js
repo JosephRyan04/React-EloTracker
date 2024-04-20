@@ -1,5 +1,6 @@
-export default function Posts() {
-  const posts = [
+export default function Posts({newposts}) {
+  
+  let posts = [
     {
       id: 1,
       text: 'Rank: 3200',
@@ -17,6 +18,8 @@ export default function Posts() {
       },
     },
   ];
+  
+  console.log(newposts);
 
   return (
     <>
@@ -25,10 +28,10 @@ export default function Posts() {
       :
         posts.map(post => {
           return (
-            <p key={post.id}>
-              <b>{post.author.username}</b> &mdash; {post.timestamp}
+            <b className='stat-text' key={post.id}>
+              <b className='stat-text'>{post.code}</b> &mdash; Best win streak {post.maxstreak}
               <br />
-              {post.text}
+              Rank {post.rank}
             </p>
           );
         })
