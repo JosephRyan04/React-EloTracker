@@ -9,6 +9,7 @@ const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default function Leaderboard() {
     const [streak, setStreak] = useState();
     const [games, setGames] = useState(null);
+    const [ranks, setRanks] = useState(null);
     useEffect(() => {
         (async () => {
           const response = await fetch(BASE_API_URL + '/api/top-streak');
@@ -27,9 +28,13 @@ export default function Leaderboard() {
         if(games == null){
         (async () => {
           const response = await fetch( BASE_API_URL + '/api/most-games');
+          const rank_response = await fetch( BASE_API_URL + '/api/top-ranked');
           if (response.ok) {
             const results = await response.json();
             setGames(results);
+
+            const rank_results = await rank_response.json();
+            setRanks(rank_results);
           }
           else {
             console.log(BASE_API_URL +" failed to hit /api/most-games")
@@ -41,7 +46,7 @@ export default function Leaderboard() {
 
   return (
     <Body sidebar>
-      <div>
+      <div className='leaderboard'>
       <h1>Leaderboard</h1>
       <Tabs
       variant='pills'
@@ -52,14 +57,20 @@ export default function Leaderboard() {
     >
       <Tab id='tab-end' eventKey="streak" title="Win streak">
       <Card className='grid p-3'>
+      <div className='d-flex justify-content-between stat-text'>
+        <div className='d-flex gap-4'><p>Rank</p><p>Player</p></div>
+        <p>Best win streak</p>
+        </div>
             {streak &&
-              streak.map(post => {
+              streak.map( (rank, index) => {
                 return (
-                  <div><hr className='m-1'/>
-                  <div className='d-flex justify-content-between stat-text' key={post.code}>
-      
-                    <a href={'/user/' + post.code.replace('#', "-")} className='navbar-brand'><b>{post.code}</b></a>
-                    <p>Best win streak {post.maxstreak} &mdash; Rank {Math.round(post.rank * 10) / 10}</p>
+                  <div key={rank.code}><hr className='m-1'/>
+                  <div className='d-flex justify-content-between stat-text'>
+                    
+                    <div className='d-flex gap-5'>
+                      <p>{index + 1}</p><a href={'/user/' + rank.code.replace('#', "-")} className='navbar-brand'><p>{rank.code}</p></a>
+                      </div>
+                    <p>{rank.maxstreak}</p>
       
                   </div>
                   </div>
@@ -70,15 +81,18 @@ export default function Leaderboard() {
       </Tab>
       <Tab eventKey="setcount" title="Set count">  
       <Card className='grid p-3'>
-      <div className='d-flex justify-content-between stat-text'><p>Player</p><p>Set count</p></div>
+      <div className='d-flex justify-content-between stat-text'>
+        <div className='d-flex gap-4'><p>Rank</p><p>Player</p></div>
+        <p>Set count</p>
+        </div>
             {games &&
-              games.map(game => {
+              games.map( (game, index) => {
                 return (
-                  <div><hr className='m-1'/>
-                  <div className='d-flex justify-content-between stat-text' key={game.code}>
+                  <div key={game.code}><hr className='m-1'/>
+                  <div className='d-flex justify-content-between stat-text'>
                     
-                    <a href={'/user/' + game.code.replace('#', "-")} className='navbar-brand'><b>{game.code}</b></a>
-                    <p>Sets played {game.gamecount} &mdash; Rank {Math.round(game.rank * 10) / 10}</p>
+                    <div className='d-flex gap-5'><p>{index + 1}</p><a href={'/user/' + game.code.replace('#', "-")} className='navbar-brand'><p>{game.code}</p></a></div>
+                    <p>{game.gamecount}</p>
       
                   </div>
                   </div>
@@ -88,7 +102,28 @@ export default function Leaderboard() {
             </Card>
       </Tab>
       <Tab eventKey="rating" title="Rating" >
-        Wow you really tried to find this, huh.
+      <Card className='grid p-3'>
+      <div className='d-flex justify-content-between stat-text'>
+        <div className='d-flex gap-4'><p>Rank</p><p>Player</p></div>
+        <p>Rating</p>
+        </div>
+            {ranks &&
+              ranks.map( (rank, index) => {
+                return (
+                  <div key={rank.code}><hr className='m-1'/>
+                  <div className='d-flex justify-content-between stat-text'>
+                    
+                    <div className='d-flex gap-5'>
+                      <p>{index + 1}</p><a href={'/user/' + rank.code.replace('#', "-")} className='navbar-brand'><p>{rank.code}</p></a>
+                      </div>
+                    <p>{Math.round(rank.rank * 10) / 10}</p>
+      
+                  </div>
+                  </div>
+                );
+              })
+            }
+            </Card>
       </Tab>
     </Tabs>
     </div>

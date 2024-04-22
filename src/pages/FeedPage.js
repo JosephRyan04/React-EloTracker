@@ -177,6 +177,7 @@ export default function FeedPage() {
     </div>
     <div className="d-flex flex-column align-items-center">
     <h4>{code}</h4>
+    <div className='d-flex gap-3 p-3'>
     <Button
       variant="outline-secondary"
       disabled={isLoading}
@@ -192,6 +193,7 @@ export default function FeedPage() {
     >
       <Shuffle size={24} color="#ffffff" />  Random
     </Button>
+    </div>
     </div>
   </div>
     </Body>

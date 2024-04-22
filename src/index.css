@@ -17,6 +17,11 @@
 	align-items: center;
 }
 
+.leaderboard {
+  width: 100%;
+  max-width: 1000px;
+}
+
 .flex-row {
   gap:10px;
 }
@@ -69,7 +74,7 @@ h1,h2,h4,h5 {
 }
 
 .Sidebar div:hover {
-  background-color: #603f7a;
+  /* background-color: rgba(184, 96, 252, 0.39); */
   transition: .25s;
 }
 
@@ -86,7 +91,9 @@ h1,h2,h4,h5 {
 .sidebar-margin {
   margin-left: 208px;
   margin-top: 66px;
+  display: flex;
   align-self: start !important;
+  justify-content: center;
 }
 
 /* Header Text Colors */
@@ -118,14 +125,18 @@ h1,h2,h4,h5 {
 
 #uncontrolled-tab-example-tab-streak {
   --bs-nav-pills-border-radius: var(--bs-border-radius) 0% 0% var(--bs-border-radius) !important;
+  padding: 4px;
 }
 
 #uncontrolled-tab-example-tab-setcount {
   border-radius: 0 !important;
+  padding: 4px;
 }
 
 #uncontrolled-tab-example-tab-rating {
-  border-radius: 0% var(--bs-border-radius) var(--bs-border-radius) 0% !important
+  border-radius: 0% var(--bs-border-radius) var(--bs-border-radius) 0% !important;
+  padding: 4px;
+  
 }
 
 
@@ -264,7 +275,7 @@ div.MainBody {
   .form-control:focus {
     color: #3F4254;
     background-color: #ffffff;
-    border-color: #884377;
+    border-color: #5b1292;
     box-shadow: none;
   }
   
@@ -332,4 +343,8 @@ div.MainBody {
     position: relative;
     border-color: #1e1f25;
     bottom: 15px;
+  }
+
+  .spacer {
+    width: 24px;
   }
