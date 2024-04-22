@@ -135,7 +135,7 @@ export default function EloChart() {
 
   useEffect(() => {
     (async () => {
-      const apiResponse = await fetch('/api/user-ranks?player=' + user);
+      const apiResponse = await fetch(BASE_API_URL + '/api/user-ranks?player=' + user);
       setResponseCode(apiResponse.ok);
       if (apiResponse.ok) {
         const results = await apiResponse.json();
@@ -158,7 +158,7 @@ export default function EloChart() {
 
   function UpdateElo(){
     (async () => {
-      const apiResponse = await fetch('/api/update-elo/' + user);
+      const apiResponse = await fetch(BASE_API_URL + '/api/update-elo/' + user);
       if (apiResponse.ok) {
         const results = await apiResponse.json();
         console.log(results);

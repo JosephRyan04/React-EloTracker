@@ -3,7 +3,7 @@ import {useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import {Shuffle} from "@phosphor-icons/react";
 
-
+const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
 export default function FeedPage() {
 
@@ -48,7 +48,7 @@ export default function FeedPage() {
   }
   function RandomUser(){
     (async () => {
-      const apiResponse = await fetch('/api/random-user');
+      const apiResponse = await fetch(BASE_API_URL + '/api/random-user');
       if (apiResponse.ok) {
         let results = await apiResponse.json();
         console.log(results);
