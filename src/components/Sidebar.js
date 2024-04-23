@@ -1,6 +1,6 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { House, Trophy } from "@phosphor-icons/react";
+import { House, Trophy, Question } from "@phosphor-icons/react";
 /* <Navbar.Toggle aria-controls="basic-navbar-nav" />
 <Navbar.Collapse id="basic-navbar-nav">      </Navbar.Collapse> */
 
@@ -18,6 +18,13 @@ export default function Sidebar() {
         <Nav.Link href="/leaderboard">
         <div className="d-flex align-items-center p-1 gap-4"> 
           <Trophy size={32} color="#ffffff" weight="duotone" /> <h5>Leaderboard</h5> 
+        </div>
+          </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/about">
+        <div className="d-flex align-items-center p-1 gap-4"> 
+          <Question size={32} color="#ffffff" weight="duotone" /> <h5>About</h5> 
         </div>
           </Nav.Link>
       </Nav.Item>

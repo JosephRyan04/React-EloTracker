@@ -1,9 +1,33 @@
 .App {
   padding: 0;
-  background-color: #23252c;
+  background-image: linear-gradient(to right top, #000105, #010106, #020106, #040006, #060006, #070005, #070004, #070003, #050002, #040001, #020001, #000000);  font-family: Maven Pro, sans-serif;
   color: #ddd;
-  
-  height: 100%;
+  font-family: Maven Pro, sans-serif;
+  height: 100vh;
+}
+
+.about {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	font-size: 1.14286rem;
+	line-height: 1.5;
+	font-weight: 450;
+}
+
+.content-area {
+	width: 100%;
+	max-width: 1440px;
+}
+
+.content-container {
+	margin: .5rem;
+	height: calc(100% - 85px);
+	align-items: center;
+}
+
+.leaderboard {
+  width: 100%;
+  max-width: 1000px;
 }
 
 .flex-row {
@@ -28,42 +52,102 @@ h1,h2,h4,h5 {
   width: 208px;
   height: 100%;
   margin: auto;
-  padding-left: 16px;
   padding-top: 16px;
   position: fixed;
   top: 66px;
+  left: 0px;
   align-self: flex-start;
   align-items: start;
-  border-right: 1px solid #000000;
-  background-color: #2d313a;
+  border-right: 1px solid;
+  background-color: #010106;
+  gap: .8rem;
 }
 
 .Sidebar .nav-item {
   width: 100%;
+  max-height: 40px;
 }
 
 .Sidebar a {
   color: #ddd;
 }
 
-.Sidebar a:hover {
-  background-color: #eee;
+.Sidebar a:after{
+  content: "〈";
+  opacity: 0;
+  position: relative;
+  top:-32px;
+  right: -180px;
+  transition: .25s;
+  
 }
 
+.Sidebar div:hover {
+  /* background-color: rgba(184, 96, 252, 0.39); */
+  transition: .25s;
+}
 
+.Sidebar a:hover:after{
+  top:-32px;
+  right: -185px;
+  opacity: 1;
+}
 
 .Sidebar a:visited {
   color: #ddd;
 }
 
+.sidebar-margin {
+  margin-left: 208px;
+  margin-top: 66px;
+  display: flex;
+  align-self: start !important;
+  justify-content: center;
+}
+
 /* Header Text Colors */
 .navbar-brand {
-  color:#ddd;
+  font-weight: 650;
+  color:#ffffff;
 }
 
 .navbar-brand:focus, .navbar-brand:hover {
   color:#ddd;
 }
+
+.nav-pills {
+  color: #fff;
+  --bs-nav-tabs-link-active-color: #fff;
+  border-color: 1px solid #212529;
+}
+
+.nav-pills .nav-link{
+  color: #fff;
+  border: 1px solid #212529;
+}
+
+.nav-pills .nav-link.active {
+	color: var(--bs-nav-tabs-link-active-color);
+	background-color: rgba(184, 96, 252, 0.39);
+
+}
+
+#uncontrolled-tab-example-tab-streak {
+  --bs-nav-pills-border-radius: var(--bs-border-radius) 0% 0% var(--bs-border-radius) !important;
+  padding: 4px;
+}
+
+#uncontrolled-tab-example-tab-setcount {
+  border-radius: 0 !important;
+  padding: 4px;
+}
+
+#uncontrolled-tab-example-tab-rating {
+  border-radius: 0% var(--bs-border-radius) var(--bs-border-radius) 0% !important;
+  padding: 4px;
+  
+}
+
 
 div.container-fluid:nth-child(3) > canvas:nth-child(1){
   display: flex !important;
@@ -79,26 +163,85 @@ div.MainBody {
 }
 .Body {
   min-height: 500px;
-  
 }
 
 .Content {
-  height: 100vh;
-  padding-left:232px;
+	height: 100vh;
+	width: calc(100% - 2rem);
+	margin: 1rem auto;
+	max-width: 1600px;
 }
-.chart-container {
+.card {
   position: relative;
-  margin: auto;
-  width: 60%;
-  aspect-ratio: 2/1;
+  width: 100%;
+  background-color: #010106;
+  outline: 1px solid;
+  box-shadow: rgba(63, 57, 57, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+}
+
+.card > hr{
+  opacity: 1;
+  
+}
+.light{
   background-color: #2d313a;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+}
+
+.dark{
+  background-color: #1c1e22;
+}
+
+.list-group-item {
+  border-color: black !important;
+}
+
+.grid {
+  display: grid;
+}
+#slp-button {
+	--bs-btn-color: #fff;
+	--bs-btn-border-color: #208e2c;
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-bg: #208e2c;
+	--bs-btn-hover-border-color: #208e2c;
+  --bs-btn-bg: #010106;
+  --bs-btn-active-bg: #9eff9be0;
+  --bs-btn-active-border-color: #fff;
+}
+
+#update-button {
+	--bs-btn-color: #fff;
+	--bs-btn-border-color: #5b1292;
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-bg: #5b1292;
+	--bs-btn-hover-border-color: #5b1292;
+  --bs-btn-bg: #010106;
+  --bs-btn-active-bg: #daaaff;
+  --bs-btn-active-border-color: #fff;
+}
+
+.card-header {
+  background-color: #010106;
+  border: none;
+}
+
+.chart-container {
+  aspect-ratio: 2/1;
+}
+
+.chart-div {
+  justify-content: center;
+  aspect-ratio: 2/1;
 }
 
 
 
 .row {
   justify-content: center;
+}
+
+.stat-text {
+  color: #DDD;
 }
 
 @media screen and (max-width: 500px){
@@ -128,24 +271,26 @@ div.MainBody {
   .form-control {
     -webkit-transition: none;
     transition: none;
+    font-size:x-large;
     width: 64px;
     height: 64px;
     text-align: center;
     padding: 0;
+    border-radius: 0%;
+    border: none;
+    border-bottom: 1px solid white;
   }
   
   .form-control:focus {
     color: #3F4254;
     background-color: #ffffff;
-    border-color: #884377;
-    box-shadow: 0 0 0 .25rem #431963;
-    outline: 0;
+    border-color: #5b1292;
+    box-shadow: none;
   }
   
   .form-control.form-control-solid {
-    background-color: #2d313a;
-    border-color: #F3F6F9;
-    color: #DDD;
+    background-color: #2d313a00;
+    color: #dddddd70;
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   }
   
@@ -153,12 +298,13 @@ div.MainBody {
   .form-control.form-control-solid.active,
   .form-control.form-control-solid:focus,
   .form-control.form-control-solid.focus {
-    background-color: #23252c;
-    border-color: #EBEDF3;
-    color: #ffffff;
+    text-decoration: underline;
+    color: #ffffff7a;
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   }
-
+  .ex {
+    color: #ddd !important;
+  }
   .eloRow{
     display: flex;
     flex-direction: row;
@@ -172,9 +318,9 @@ div.MainBody {
   }
 
   @keyframes horizontal-shaking {
-    0% {background-color: #23252c;}
+    0% {background-color: #23252c00;}
     50% {background-color: red;}
-    100% {background-color: #23252c;}
+    100% {background-color: #23252c00;}
     0% { transform: translateX(0) }
     25% { transform: translateX(5px) }
     50% { transform: translateX(-5px) }
@@ -206,4 +352,8 @@ div.MainBody {
     position: relative;
     border-color: #1e1f25;
     bottom: 15px;
+  }
+
+  .spacer {
+    width: 24px;
   }
