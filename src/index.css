@@ -6,6 +6,14 @@
   height: 100vh;
 }
 
+.about {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	font-size: 1.14286rem;
+	line-height: 1.5;
+	font-weight: 450;
+}
+
 .content-area {
 	width: 100%;
 	max-width: 1440px;
@@ -52,6 +60,7 @@ h1,h2,h4,h5 {
   align-items: start;
   border-right: 1px solid;
   background-color: #010106;
+  gap: .8rem;
 }
 
 .Sidebar .nav-item {
