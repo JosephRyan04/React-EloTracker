@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-EloTracker/static/css/main.22a26728.css",
+    "main.js": "/React-EloTracker/static/js/main.f8083391.js",
+    "static/js/453.d688ff26.chunk.js": "/React-EloTracker/static/js/453.d688ff26.chunk.js",
+    "index.html": "/React-EloTracker/index.html",
+    "main.22a26728.css.map": "/React-EloTracker/static/css/main.22a26728.css.map",
+    "main.f8083391.js.map": "/React-EloTracker/static/js/main.f8083391.js.map",
+    "453.d688ff26.chunk.js.map": "/React-EloTracker/static/js/453.d688ff26.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22a26728.css",
+    "static/js/main.f8083391.js"
+  ]
+}
