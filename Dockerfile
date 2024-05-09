@@ -19,7 +19,7 @@ ENV REACT_APP_BASE_API_URL=http://localhost:5000
 
 ################################################################################
 # Create a stage for installing production dependecies.
-RUN npm install
+
 
 # FROM base as deps
 
@@ -46,6 +46,7 @@ RUN npm install
 # Copy the rest of the source files into the image.
 COPY . .
 # Run the build script.
+RUN npm install
 RUN npm run build
 
 ################################################################################
