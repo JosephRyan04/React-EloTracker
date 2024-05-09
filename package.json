@@ -1,6 +1,7 @@
 {
   "name": "react-tracker",
   "version": "0.1.0",
+  "homepage": "https://josephryan04.github.io/React-EloTracker",
   "private": true,
   "devDependencies": {
     "eslint-plugin-react": "^7.34.1",
