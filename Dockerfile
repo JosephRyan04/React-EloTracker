@@ -19,27 +19,29 @@ ENV REACT_APP_BASE_API_URL=http://localhost:5000
 
 ################################################################################
 # Create a stage for installing production dependecies.
-FROM base as deps
+RUN npm ci
 
-# Download dependencies as a separate step to take advantage of Docker's caching.
-# Leverage a cache mount to /root/.npm to speed up subsequent builds.
-# Leverage bind mounts to package.json and package-lock.json to avoid having to copy them
-# into this layer.
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
+# FROM base as deps
 
-################################################################################
-# Create a stage for building the application.
-FROM deps as build
+# # Download dependencies as a separate step to take advantage of Docker's caching.
+# # Leverage a cache mount to /root/.npm to speed up subsequent builds.
+# # Leverage bind mounts to package.json and package-lock.json to avoid having to copy them
+# # into this layer.
+# RUN --mount=type=bind,source=package.json,target=package.json \
+#     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+#     --mount=type=cache,target=/root/.npm \
+#     npm ci --omit=dev
 
-# Download additional development dependencies before building, as some projects require
-# "devDependencies" to be installed to build. If you don't need this, remove this step.
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci
+# ################################################################################
+# # Create a stage for building the application.
+# FROM deps as build
+
+# # Download additional development dependencies before building, as some projects require
+# # "devDependencies" to be installed to build. If you don't need this, remove this step.
+# RUN --mount=type=bind,source=package.json,target=package.json \
+#     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+#     --mount=type=cache,target=/root/.npm \
+#     npm ci
 
 # Copy the rest of the source files into the image.
 COPY . .
