@@ -13,7 +13,8 @@ export default function ExplorePage() {
         This project was created to solve this problem, by keeping a record of a user's stats.</p>
         <h6>Creator</h6>
         <p className='about'>
-          I am a recent Computer Science & Engineering graduate and Melee player. My gamer-tag is Wens.
+          I am a recent Computer Science & Engineering graduate and Melee player. My gamer-tag is Wens. Please feel to reach out
+          with any business or project related inquiries!
         </p>
         <h6>Contact Information</h6>
         <ul>
