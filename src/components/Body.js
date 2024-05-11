@@ -12,7 +12,5 @@ export default function Body({ sidebar, children }) {
         <div className='content-area'>{children}</div>}
       
       </div>
-
-      
   );
 }
