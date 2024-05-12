@@ -14,7 +14,7 @@ FROM node:${NODE_VERSION}-alpine as base
 
 # Set working directory for all build stages.
 WORKDIR /usr/src/app
-ENV REACT_APP_BASE_API_URL=http://localhost:5000
+ENV REACT_APP_BASE_API_URL=slippitracker.com
 
 
 ################################################################################
