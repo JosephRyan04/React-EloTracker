@@ -1,4 +1,5 @@
 import Body from '../components/Body';
+import { GithubLogo, Envelope } from '@phosphor-icons/react';
 
 export default function ExplorePage() {
 
@@ -13,14 +14,13 @@ export default function ExplorePage() {
         This project was created to solve this problem, by keeping a record of a user's stats.</p>
         <h6>Creator</h6>
         <p className='about'>
-          I am a recent Computer Science & Engineering graduate and Melee player. My gamer-tag is Wens. Please feel to reach out
-          with any business or project related inquiries!
+          I am a recent Computer Science & Engineering graduate and Melee player. My gamer-tag is Wens, and I'm currently ranked
+          third in Kentucky melee. Please feel to reach out with any business or project related inquiries!
         </p>
-        <h6>Contact Information</h6>
-        <ul>
-          <li>E-mail: JosephRyan.CS@outlook.com</li>
-          <li>Github: jlryan04</li>
-        </ul>
+        <div className='d-flex gap-2'>
+        <a href="mailto:JosephRyan.CS@outlook.com"><h6><Envelope size={18}/> JosephRyan.CS@outlook.com</h6></a>
+        <a href="https://github.com/JosephRyan04"><h6><GithubLogo size={18} weight="fill" /> JosephRyan04</h6></a>
+        </div>
       </div>
     </Body>
   );
