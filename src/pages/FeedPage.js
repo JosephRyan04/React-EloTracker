@@ -61,65 +61,75 @@ export default function FeedPage() {
       }
     })();
   }
-  // Event listener to handle box-style connect-code input
-  let showExample = true;
-  function CodeInput() {
-    
-    const inputs = document.querySelectorAll('#otp > *[id]');
-    inputs[0].value = "A";
-    inputs[1].value = "B";
-    inputs[2].value = "C";
-    inputs[3].value = "D";
-    inputs[4].value = "#";
-    inputs[5].value = "1";
-    inputs[6].value = "2";
-    inputs[7].value = "3";
-    
-    for (let i = 0; i < inputs.length; i++) {
-      
-      inputs[i].addEventListener('keydown', function(event) {
-        if (event.key && setExample()){
-          for (let i = 0; i < inputs.length; i++){
-          inputs[i].classList.add("ex");
-          inputs[i].value = '';
-          }
-          }
-          
-        if (event.key === "Backspace") {
-          if (i === inputs.length - 1){
-            if(inputs[i].value === ''){
-              inputs[i-1].focus();
-              return true;
-            }
-            return true;
-        }
-          inputs[i].value = '';
 
-          if (i !== 0)
-            inputs[i - 1].focus();
-        }
-        else if (event.key === "Enter"){
-          CodeEnter();
-          return;
-        }
-        else {
-          if (i === inputs.length - 1 && inputs[i].value !== '') {
+
+
+
+
+  const [isLoading, setLoading] = useState(false);
+
+  
+  useEffect(() => {
+    function CodeInput() {
+    
+      const inputs = document.querySelectorAll('#otp > *[id]');
+      inputs[0].value = "A";
+      inputs[1].value = "B";
+      inputs[2].value = "C";
+      inputs[3].value = "D";
+      inputs[4].value = "#";
+      inputs[5].value = "1";
+      inputs[6].value = "2";
+      inputs[7].value = "3";
+      
+      for (let i = 0; i < inputs.length; i++) {
+        
+        inputs[i].addEventListener('keydown', function(event) {
+          if (event.key && setExample()){
+            for (let i = 0; i < inputs.length; i++){
+            inputs[i].classList.add("ex");
+            inputs[i].value = '';
+            }
+            }
             
-          } else if (event.keyCode > 47 && event.keyCode < 58) {
-            inputs[i].value = event.key;
-            if (i !== inputs.length - 1)
-              inputs[i + 1].focus();
-            event.preventDefault();
-          } else if (event.keyCode > 64 && event.keyCode < 91) {
-            inputs[i].value = String.fromCharCode(event.keyCode);
-            if (i !== inputs.length - 1)
-              inputs[i + 1].focus();
-            event.preventDefault();
+          if (event.key === "Backspace") {
+            if (i === inputs.length - 1){
+              if(inputs[i].value === ''){
+                inputs[i-1].focus();
+                return true;
+              }
+              return true;
           }
-        }
-      });
+            inputs[i].value = '';
+  
+            if (i !== 0)
+              inputs[i - 1].focus();
+          }
+          else if (event.key === "Enter"){
+            CodeEnter();
+            return;
+          }
+          else {
+            if (i === inputs.length - 1 && inputs[i].value !== '') {
+              
+            } else if (event.keyCode > 47 && event.keyCode < 58) {
+              inputs[i].value = event.key;
+              if (i !== inputs.length - 1)
+                inputs[i + 1].focus();
+              event.preventDefault();
+            } else if (event.keyCode > 64 && event.keyCode < 91) {
+              inputs[i].value = String.fromCharCode(event.keyCode);
+              if (i !== inputs.length - 1)
+                inputs[i + 1].focus();
+              event.preventDefault();
+            }
+          }
+        }, true);
+      }
     }
-  }
+      // Event listener to handle box-style connect-code input
+  let showExample = true;
+  
 
   // Acts as latch to only show the example code once. Avoids the unsafe referance of using
   // only a showExample bool  
@@ -132,16 +142,8 @@ export default function FeedPage() {
       return false;
     }
   }
-
-
-
-
-
-
-  const [isLoading, setLoading] = useState(false);
-
-  
-  useEffect(() => {
+    document.getElementById("t1").focus();
+    CodeInput();
     function simulateNetworkRequest() {
       return new Promise((resolve) => setTimeout(resolve, 2000));
     }
@@ -153,10 +155,10 @@ export default function FeedPage() {
     }
   }, [isLoading]);
 
-  window.onload = function() {
-    document.getElementById("t1").focus();
-    CodeInput();
-  };
+  // window.onload = function() {
+  //   document.getElementById("t1").focus();
+  //   CodeInput();
+  // };
 
   
 
