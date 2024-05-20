@@ -228,8 +228,21 @@ export default function EloChart() {
             },
             scales: {
               x: {
-                display: false,
+                
                 //type: 'time',
+                grid: {
+                  display: false,
+                  color: "#00000000",
+                  zeroLineColor: '#ddd',
+                  borderColor: "#ddd"
+                },
+                border: {
+                  width: 1,
+                  color: "#212529"
+              },
+              ticks: {
+                display: false
+              },
                     time: {
       unit: 'day',
       displayFormats: {
@@ -241,18 +254,7 @@ export default function EloChart() {
         year: 'yyyy'
       },
       tooltipFormat: 'MMM dd HH:mm'
-    },
-                grid: {
-                  display: true,
-                  zeroLineColor: '#fff',
-                  borderColor: "#fff"
-                },
-                border: {
-                  enabled: true,
-                  color: '#fff',
-                  zeroLineColor: '#fff',
-                  display: true
-              }
+    }
                 
               },
               y: {
@@ -262,8 +264,13 @@ export default function EloChart() {
                   stepSize: 0
                 },
                 grid: {
-                  color: "#212529",
-                }
+                  color: "#212529"
+                },
+                border: {
+                  width: 1,
+                  color: "#212529"
+              },
+
 
               },
             },
@@ -280,7 +287,7 @@ export default function EloChart() {
 
         </Col>
 
-        <Col className='d-flex flex-column gap-3 align-items-start'>
+        <Col id="playerstats" className='d-flex flex-column gap-3 align-items-start'>
         {(response.regionalrank || response.globalrank) &&
         <Card className='grid p-3'>
         <h4>Placements</h4>

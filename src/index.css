@@ -262,10 +262,24 @@ div.MainBody {
     position: relative;
     margin: auto;
     height: auto;
-    width: 100vw;
   }
+
+  .chart-container :nth-child(1){
+    padding: .25rem !important;
+    gap: 0 !important;
+  }
+  .chart-container :nth-child(2){
+    margin: .1rem !important;
+  }
+  .chart-container :nth-child(3){
+    padding: .25rem !important;
+  }
+
+  #playerstats {
+    align-items: center !important;
+  }
+
   #RankChart{
-    width: 95vw;
     position: relative;
   }
 
