@@ -1,9 +1,16 @@
 .App {
   padding: 0;
-  background-image: linear-gradient(to right top, #000105, #010106, #020106, #040006, #060006, #070005, #070004, #070003, #050002, #040001, #020001, #000000);  font-family: Maven Pro, sans-serif;
+  font-family: Maven Pro, sans-serif;
   color: #ddd;
   font-family: Maven Pro, sans-serif;
   height: 100vh;
+}
+
+body {
+  /* background-image: linear-gradient(to right top, #000105, #010106, #020106, #040006, #060006, #070005, #070004, #070003, #050002, #040001, #020001, #000000); */
+  background-color: #000000;
+  background-size: cover;
+  min-height: 100%;
 }
 
 .about {
@@ -244,7 +251,7 @@ div.MainBody {
   color: #DDD;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 767px){
   .Sidebar{
   display: none!important;
   }
@@ -260,6 +267,14 @@ div.MainBody {
   #RankChart{
     width: 95vw;
     position: relative;
+  }
+
+  .content-area {
+    margin-left: 0px;
+  }
+
+  .form-control {
+    width: 32px !important;
   }
 
   }
