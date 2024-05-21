@@ -1,6 +1,6 @@
 import Sidebar from './Sidebar';
 
-export default function Body({ sidebar, children }) {
+export default function Body({ sidebar, children}) {
   return (
     <div className='content-container d-flex flex-row justify-content-center'>
         {sidebar &&  

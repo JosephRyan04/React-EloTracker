@@ -11,6 +11,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import 'chartjs-adapter-date-fns';
 import { CaretUp, CaretDown, Lightning, ArrowsClockwise, UserPlus} from "@phosphor-icons/react";
+import Sidebar from '../components/Sidebar';
 
 
 
@@ -134,6 +135,11 @@ export default function EloChart() {
   
 
   useEffect(() => {
+    const sidebar = document.querySelector(".Sidebar");
+    if(sidebar){
+
+      console.log("collapsed");
+    }
     (async () => {
       const apiResponse = await fetch(BASE_API_URL + '/api/user-ranks?player=' + user);
       setResponseCode(apiResponse.ok);
@@ -173,9 +179,8 @@ export default function EloChart() {
   
 
   return (
-    
+    <><Sidebar hidden_sm={"hidden"}/>
     <Body>{responseCode &&
-
       <Row id="RankChart" className='d-flex gap-2'>
       <Col md={8}>
       <Card className="chart-container p-0">
@@ -365,6 +370,6 @@ export default function EloChart() {
          }
 
     </Body>
-    
+    </>
   );
 }

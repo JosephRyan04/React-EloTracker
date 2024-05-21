@@ -4,9 +4,9 @@ import { House, Trophy, Question } from "@phosphor-icons/react";
 /* <Navbar.Toggle aria-controls="basic-navbar-nav" />
 <Navbar.Collapse id="basic-navbar-nav">      </Navbar.Collapse> */
 
-export default function Sidebar() {
+export default function Sidebar({hidden_sm, hidden_lg}) {
   return (
-    <Navbar sticky="top" className="flex-column Sidebar container hidden-sm">
+    <Navbar sticky="top" className={`flex-column Sidebar container ${hidden_sm}`}>
       <Nav.Item>
         <Nav.Link href="/">
           <div className="d-flex align-items-center p-1 gap-4">
